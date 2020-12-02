@@ -1,6 +1,6 @@
 # Hide Crontab Contents with a Carriage Return
 
-### What's happening?
+### What's is the tactic?
 
 The contents of a crontab file can be hidden by inserting a carriage return character and a fake message. When a user's crontab is listed with `crontab -l`, the carriage return character will be interpreted so the the message will be displayed instead of the scheduled task. This is a simple trick which can be used to maintain persistence.
 
@@ -27,7 +27,6 @@ root@kali:# less cr
 1^M2
 root@kali:# more cr
 1
-
 ```
 
 `crontab -l` treats the control characters the same way that `cat` and `head` do: `crontab -l` interprets the carriage return as an instruction and moves the cursor to the front of the line.
