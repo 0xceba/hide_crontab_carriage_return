@@ -1,8 +1,8 @@
-# Hide Crontab Contents with a Carriage Return
+# Hide Crontab Cron Job with a Carriage Return
 
 ### What is the tactic?
 
-The contents of a crontab file can be hidden by inserting a carriage return character and a fake message. When a user's crontab is listed with `crontab -l`, the carriage return character will be interpreted so the message will be displayed instead of the scheduled task. This is a simple trick which can be used to maintain persistence.
+A cron job in a crontab file can be hidden by inserting a carriage return character and a fake message. When a user's crontab is listed with `crontab -l`, the carriage return character will be interpreted so the message will be displayed instead of the cron job. This is a simple trick which can be used to maintain persistence.
 
 ### Where did this come from?
 
@@ -12,7 +12,7 @@ Later they found out that there _was_ a cron job but that the adversary had incl
 
 ### Why does this work?
 
-Some Linux binaries (like `cat`, `head`, `tail`, and `nl`) interpret control characters and others (`less`,`more`) display or ignore them:
+Some Linux binaries (like `cat`, `head`, `tail`, and `nl`) interpret control characters and others (`less` and `more`) display or ignore them:
 ```
 root@kali:# echo -e '1\r2' > cr
 root@kali:# cat cr
@@ -29,9 +29,9 @@ root@kali:# more cr
 1
 ```
 
-`crontab -l` treats the control characters the same way that `cat` and `head` do: `crontab -l` interprets the carriage return as an instruction and moves the cursor to the front of the line.
+`crontab -l` treats the control characters the same way that `cat` and `head` do: `crontab -l` interprets the carriage return as an instruction so `crontab -l` moves to the beginning of the line before continuing to write to stdout.
 
-### How do we execute this?
+### How is this tactic executed?
 
 **Manual execution:**
 1. Edit the current user's crontab: `crontab -e`
