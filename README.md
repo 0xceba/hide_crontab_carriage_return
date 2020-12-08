@@ -35,19 +35,13 @@ root@kali:# more cr
 
 **Manual execution:**
 1. Edit the current user's crontab: `crontab -e`
-1. Delete the preamble:
-	* nano:
-		1. `Ctrl`+`Shift`+`6` to select the first line of the preamble.
-		1. Move cursor with down arrow key until the final line.
-		1. `Ctrl`+`K` to cut/delete the selected text.
-	* vi/vim:
-		1. Issue command `23dd` from the first line to delete the first 23 lines (length of the preamble).
+1. Delete the preamble
 1. Insert the scheduled task with a trailing semicolon: `* * * * * touch /tmp/1;`
 1. Insert the carriage return:
 	* nano: `Alt`+`V` then `Ctrl`+`M`.
 	* vi/vim: `Ctrl`+`V` then `Ctrl`+`M`.
 1. Write the display message that says there are is crontab: `no crontab for [user]`
-1. Add sufficient whitespaces after the message to completely hide the cron job. The formula for the minimum number of whitespace is: length of cron job - 14 - length of user name.
+1. Add sufficient whitespaces after the message to completely hide the cron job. The minimum number of whitespaces is: length of cron job - 14 - length of user name.
 
 When finished the crontab file will contain the following:
 ```
