@@ -49,7 +49,6 @@ The crontab file will look like the following when finished:
 ```
 
 **Bash one-liner execution:**
-Or use the following one-liner:
 ```
 cc="* * * * * touch /tmp/1" ; ct=$(printf "$cc;\rno crontab for $USER%*s" $(expr length "$cc" - 14 - $(expr length $USER))) ; echo "$ct" | crontab -
 ```
