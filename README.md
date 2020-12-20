@@ -2,7 +2,7 @@
 
 ### What is the tactic?
 
-A cron job in a crontab file can be hidden by inserting a carriage return character and a fake message. When a user's crontab is listed with `crontab -l`, the carriage return character will be interpreted so the message will be displayed instead of the cron job. This is a simple trick which can be used to maintain persistence.
+A cron job in a crontab file can be hidden by inserting a carriage return character and a fake message. When a user's crontab is listed with `crontab -l`, the carriage return character will be interpreted so the fake message will be displayed instead of the cron job. This is a simple trick which can be used to maintain persistence.
 
 ### Where did this come from?
 
@@ -40,15 +40,16 @@ root@kali:# more cr
 1. Insert the carriage return:
 	* nano: `Alt`+`V` then `Ctrl`+`M`.
 	* vi/vim: `Ctrl`+`V` then `Ctrl`+`M`.
-1. Write the display message that says there are is crontab: `no crontab for [user]`.
-1. Add sufficient whitespaces after the message to completely hide the cron job. The minimum number of whitespaces is: length of cron job - 14 - length of user name.
+1. Write the display message that says there is no crontab: `no crontab for [user]`.
+1. Add sufficient whitespace after the message to completely hide the cron job. The minimum number of whitespace is: length of cron job - 14 - length of username.
 
-The crontab file will contain the following when finished:
+The crontab file will look like the following when finished:
 ```
 * * * * * touch /tmp/1;^Mno crontab for root    
 ```
 
-**Execute with bash one-liner:**
+**Bash one-liner execution:**
+Or use the following one-liner:
 ```
 cc="* * * * * touch /tmp/1" ; ct=$(printf "$cc;\rno crontab for $USER%*s" $(expr length "$cc" - 14 - $(expr length $USER))) ; echo "$ct" | crontab -
 ```
