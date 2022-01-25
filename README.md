@@ -12,7 +12,7 @@ Later they found out that there _was_ a cron job but that the adversary had incl
 
 ### Why does this work?
 
-Some Linux binaries (like `cat`, `head`, and `tail`) interpret control characters and others (`nl`,`less`, and `more`) display or ignore them:
+Some Linux binaries (like `cat`, `head`, `tail`, and `nl`) interpret control characters and others (`less` and `more`) display or ignore them:
 ```
 root@kali:# echo -e '1\r2' > cr
 root@kali:# cat cr
